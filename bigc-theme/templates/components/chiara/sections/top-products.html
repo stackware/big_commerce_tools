@@ -1,0 +1,30 @@
+{{#block "chiara-top-products"}}
+{{#if products.top_sellers}}
+<div class="chiara-section chiara-section--products chiara-section--topProducts chiara-section--products-style-{{#if theme_settings.products_top_bg '==' ''}}default{{else}}parallax{{/if}}"
+    {{#if theme_settings.products_top_bg '!==' ''}}
+        style="background-image:url({{theme_settings.products_top_bg}})"
+    {{/if}}>
+    <div class="chiara-products">
+        <h2 class="page-heading">{{{theme_settings.products_top_heading}}}</h2>
+        <p class="page-subheading">{{{theme_settings.products_top_subheading}}}</p>
+
+        {{#if theme_settings.products_top_type '===' 'carousel'}}
+            {{> components/chiara/products/carousel
+                products=products.top_sellers
+                columns=theme_settings.products_top_columns
+                columns_sm=theme_settings.products_top_columns_sm
+                list=theme_settings.products_top_heading
+            }}
+        {{else}}
+            {{> components/chiara/products/grid
+                products=products.top_sellers
+                columns=theme_settings.products_top_columns
+                columns_sm=theme_settings.products_top_columns_sm
+                list=theme_settings.products_top_heading
+            }}
+        {{/if}}
+    </div>
+</div>
+{{/if}}
+{{{region name="home_below_top_products"}}}
+{{/block}}

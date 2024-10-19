@@ -1,0 +1,56 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{#partial "page-before"}}
+    <div id="productpage-banner-top">
+    </div>
+{{/partial}}
+{{#partial "page"}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+    <div class="productView-container">
+        <div itemscope itemtype="https://schema.org/Product">
+            {{> components/products/product-view schema=true}}
+        </div>
+
+        {{{region name="product_below_content--global"}}}
+        {{{region name="product_below_content"}}}
+
+        {{#any (unless theme_settings.alsobought) (if theme_settings.alsobought_product '!=' 'related')}}
+        {{#if product.related_products}}
+        <section class="productView-productsList productView-productsList--related">
+            <h3 class="productView-productsList-heading">{{lang 'products.related_products'}}</h3>
+            <div class="productView-productsList-content">
+                {{> components/chiara/products/carousel products=product.related_products columns_sm=2 columns=4 columns_lg=5 list='Related Products'}}
+            </div>
+        </section>
+        {{/if}}
+        {{/any}}
+
+        {{#any (unless theme_settings.alsobought) (if theme_settings.alsobought_product '!=' 'similar')}}
+        {{#if product.similar_by_views}}
+        <section class="productView-productsList productView-productsList--similar">
+            <h3 class="productView-productsList-heading">{{lang 'products.similar_by_views'}}</h3>
+            <div class="productView-productsList-content">
+                {{> components/chiara/products/carousel products=product.similar_by_views columns_sm=2 columns=4 columns_lg=5 list='Customers Also Viewed'}}
+            </div>
+        </section>
+        {{/if}}
+        {{/any}}
+    </div>
+
+{{/partial}}
+{{> layout/base}}

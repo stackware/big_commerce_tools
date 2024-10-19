@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{{> chiara-custom}}
+<html class="no-js" lang="{{ locale_name }}">
+
+<head>
+    <title>{{ head.title }}</title>
+    {{{ resourceHints }}}
+    {{{ head.meta_tags }}}
+    {{{ head.config }}}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    {{#block "head"}} {{/block}}
+
+    <link href="{{ head.favicon }}" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script>
+        // Change document class from no-js to js so we can detect this in css
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    {{!-- Add slick for blog section in Home page --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    {{> components/common/polyfill-script }}
+    <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
+
+    {{!-- Load Lazysizes script ASAP so images will appear --}}
+    <script>
+        { { !-- Only load visible elements until the onload event fires, after which preload nearby elements. -- } }
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        window.lazySizesConfig.loadMode = 1;
+    </script>
+    <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
+
+    {{ getFontsCollection font-display='block' }}
+    <script async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
+
+    {{#or (if theme_settings.csspreload '===' '') (if theme_settings.csspreload '===' 'none')}}
+    {{{stylesheet '/assets/css/theme.css'}}}
+    {{else}}
+    <script src="{{cdn 'assets/vendor/loadcss/cssrelpreload.min.js' resourceHint='preload' as='script'}}"
+        async></script>
+    {{/or}}
+
+    {{#if theme_settings.csspreload '===' 'performance'}}
+    <style>
+        @media (max-width: 800px) {
+
+            .pace,
+            .nanobar {
+                display: none
+            }
+        }
+    </style>
+    {{{stylesheet '/assets/css/theme.css'}}}
+    <script>window.stencilStyleLoaded = true;</script>
+    <script>window.lazySizesConfig = { loadHidden: false, expand: 150, expFactor: 3 };</script>
+
+    {{else if theme_settings.csspreload '===' 'speedtest'}}
+    <meta class="foundation-data-attribute-namespace">
+    <style id="themeCSSPreload">
+        meta.foundation-data-attribute-namespace {
+            font-family: false
+        }
+
+        body {
+            visibility: hidden !important
+        }
+
+        .emthemesModez-header-userSection>.container {
+            transition: none !important
+        }
+    </style>
+    <style>
+        @media (max-width: 800px) {
+
+            .pace,
+            .nanobar {
+                display: none
+            }
+        }
+    </style>
+    {{{stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';var
+    el=document.getElementById('themeCSSPreload');el.parentNode.removeChild(el);window.stencilStyleLoaded=true;window.onThemeBundleMain&&window.onThemeBundleMain()"}}}
+    <noscript>{{{stylesheet '/assets/css/theme.css'}}}</noscript>
+    <script>window.lazySizesConfig = { loadHidden: false, expand: 0 };</script>
+    {{/if}}
+
+    {{#block "head-after"}} {{/block}}
+
+    {{{head.scripts}}}
+    {{{head.rsslinks}}}
+
+    {{~inject 'themeSettings' theme_settings}}
+    {{~inject 'genericError' (lang 'common.generic_error')}}
+    {{~inject 'maintenanceMode' settings.maintenance}}
+    {{~inject 'urls' urls}}
+    {{~inject 'secureBaseUrl' settings.secure_base_url}}
+    {{~inject 'assetsUrl' (cdn 'assets/')}}
+    {{~inject 'pageType' page_type}}
+    {{~inject 'cartId' cart_id}}
+    {{~inject 'template' template}}
+    {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
+    {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
+    {{~inject 'validationDefaultDictionaryJSON' (langJson 'default_messages')}}
+    {{~inject 'loadingImg' (cdn 'img/loading.svg')}}
+    {{~inject 'money' settings.money}}
+    {{~inject 'graphQLToken' settings.storefront_api.token}}
+    {{#if theme_settings.alsobought}}
+    {{~inject 'loginUrl' urls.auth.login}}
+    {{~inject 'activeCurrencyCode' currency_selector.active_currency_code}}
+    {{~inject 'defaultCurrencyCode' currency_selector.default_currency_code}}
+    {{~inject 'defaultProductImage' (cdn theme_settings.default_image_product)}}
+    {{~inject 'priceWithTaxTxt' (lang 'products.price_with_tax' tax_label=settings.tax_label)}}
+    {{~inject 'priceWithoutTaxTxt' (lang 'products.price_without_tax' tax_label=settings.tax_label)}}
+    {{~inject 'includingTaxTxt' (lang 'products.including_tax')}}
+    {{~inject 'excludingTaxTxt' (lang 'products.excluding_tax')}}
+    {{~inject 'chooseOptionsTxt' (lang 'products.choose_options')}}
+    {{~inject 'loginForPriceTxt' (lang 'products.login_for_price')}}
+    {{~inject 'txtAlsoBoughtNumberArray' (lang 'also_bought.number_array')}}
+    {{~inject 'txtAlsoBoughtAllNumberArray' (lang 'also_bought.all_number_array')}}
+    {{/if}}
+    {{~inject 'txtSelectOne' (lang 'products.select_one')}}
+    {{{snippet 'htmlhead'}}}
+</head>
+
+<body class="{{#if theme_settings.navigation_hover}}navigation-hover{{/if}} page-type-{{page_type}}
+        {{#if theme_settings.product_outstock_badge}}theme-show-outstock-badge{{/if}}
+        {{#if theme_settings.header_sticky}}theme-header-sticky{{/if}}
+        {{#if theme_settings.navigation_widgets}}{{#if theme_settings.navigation_design '===' 'simple'}}navigation-widgets{{/if}}{{/if}}
+        ">
+    {{#if theme_settings.fb_page '!==' ''}}
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=378187145615477";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    {{/if}}
+
+    {{{snippet 'header'}}}
+    <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+    <!-- {{!> components/common/icons/icon-chiara }} -->
+
+    {{#and settings.privacy_cookie settings.is_eu_ip_address}}
+    {{> components/common/cookie}}
+    {{/and}}
+
+    {{> components/common/header }}
+    {{> components/common/body }}
+    {{> components/common/footer }}
+
+    {{#if theme_settings.lightbox_type '===' 'photoswipe'}}
+    {{> components/chiara/photoswipe}}
+    {{/if}}
+
+    <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+    {{#all (if theme_settings.csspreload '!==' '') (if theme_settings.csspreload '!==' 'none') }}
+    <script>
+        window.stencilThemeJsLoaded = false;
+        function onThemeBundleMain() {
+            if (!window.stencilThemeJsLoaded && window.stencilStyleLoaded && window.stencilBootstrap) {
+                window.stencilThemeJsLoaded = true;
+                window.stencilBootstrap("{{page_type}}", {{ jsContext }}).load();
+        }
+                }
+    </script>
+    <script src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" async defer
+        onload="onThemeBundleMain()"></script>
+    {{else}}
+    <script src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}"></script>
+    <script>
+        // Exported in app.js
+        window.stencilBootstrap("{{page_type}}", {{ jsContext }}).load();
+    </script>
+    {{/all}}
+
+    {{{footer.scripts}}}
+    {{{snippet 'footer'}}}
+</body>
+
+</html>

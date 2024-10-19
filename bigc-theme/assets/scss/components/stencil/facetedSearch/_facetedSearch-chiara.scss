@@ -1,0 +1,56 @@
+.facetedSearch-refineFilters {
+    a {
+        font-size: fontSize("base") * 13/14;
+    }
+}
+
+.facetedSearch-clearLink {
+    font-size: fontSize("base") * 13/14;
+
+    .accordion-navigation-actions > & {
+        color: $color-textLink;
+
+        &:hover {
+            color: $color-textLink-hover;
+        }
+    
+        &:focus {
+            color: $color-textLink-active;
+        }
+    }
+}
+
+.facet-quick-heading {
+    margin-top: 0;
+
+    @media (max-width: screenSize("medium") - 1px) {
+        font-size: fontSize("large");
+    }
+}
+
+.facetedSearch-optionColumns {
+    @media (max-width: screenSize("medium") - 1px) {
+        column-count: 2;
+    }
+}
+
+.modal-body--facetedSearchMore {
+    @media (max-width: screenSize("medium") - 1px) {
+        display: flex;
+        flex-direction: column;
+
+        > .facet-quick-heading {
+            flex: 0 0 auto;
+        }
+
+        > .form-field {
+            flex: 0 0 auto;
+        }
+
+        > .facetedSearch-optionColumns {
+            flex: 1 1 auto;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+}

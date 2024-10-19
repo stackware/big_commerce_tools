@@ -1,0 +1,37 @@
+{{#partial "page"}}
+
+<!-- {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} -->
+
+<main class="page">
+
+    <div class="page-content page-content--centered">
+        <!-- <h1 class="page-heading">{{page.title}}</h1> -->
+
+        {{#if page.sub_pages}}
+            <nav class="navBar navBar--sub">
+                <ul class="navBar-section account-navigation">
+                    {{#each page.sub_pages}}
+                        <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                    {{/each}}
+                </ul>
+            </nav>
+        {{/if}}
+        
+        {{#if forms.contact.success}}
+            <div id="contact-us-success">{{{lang 'forms.contact_us.successful' shopPath=urls.home}}}</div>
+        {{else}}
+            {{log page_type}}
+            <!-- <p>{{{page.content}}}</p> -->
+            {{> components/page/custom/contact-us-form}}
+            </div>
+
+        {{/if}}
+
+    </div>
+
+    <!-- <div class="w-[1520px] h-[1103px] bg-[#fbf9f3]"></div> -->
+
+</main>
+
+{{/partial}}
+{{> layout/base}}

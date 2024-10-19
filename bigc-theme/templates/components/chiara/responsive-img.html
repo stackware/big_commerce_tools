@@ -1,0 +1,22 @@
+{{!--
+Params:
+- image: Object | null
+- default_image: String
+- class: String
+- size: String. Example: '160w'
+- lqip_size: Strin
+- alt: String
+--}}
+<img class="{{class}} lazyload"
+    {{#if image}}
+        src="{{getImageSrcset image 1x=(default size '160w')}}"
+        srcset="{{getImageSrcset image 1x=(default lqip_size '80w')}}"
+        data-srcset="{{getImageSrcset image use_default_sizes=true}}"
+    {{else}}
+        src="{{default_image}}"
+        srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+        data-srcset="{{default_image}}"
+    {{/if}}
+    data-sizes="auto"
+    alt="{{alt}}"
+    title="{{alt}}"/>

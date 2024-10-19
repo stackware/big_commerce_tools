@@ -1,0 +1,6 @@
+.chiara-section,
+[data-content-region] {
+    +.chiara-section {
+        margin-top: spacing("double");
+    }
+}

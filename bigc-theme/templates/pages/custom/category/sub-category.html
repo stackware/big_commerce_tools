@@ -1,0 +1,143 @@
+---
+products:
+    new:
+        limit: {{theme_settings.sidebar_new_products_count}}
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.products_per_page}}
+
+{{#partial "page"}}
+
+<!-- {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} -->
+{{#if category.image}}
+{{> components/common/responsive-img
+image=category.image
+fallback_size=theme_settings.zoom_size
+lazyload=theme_settings.lazyload_mode
+}}
+{{/if}}
+<div class="category-product-page">
+    {{#unless theme_settings.hide_category_page_heading }}
+    {{#if category.products}}
+        {{#contains (toLowerCase category.name) "all about reading"}}
+            <h1 class="page-heading">{{trim (join (split category.name "All About Reading") "")}}</h1>
+        {{else}}
+            {{#contains (toLowerCase name) "all about spelling"}}
+                <h1 class="page-heading">{{trim (join (split category.name "All About Spelling") "")}}</h1>
+            {{else}}
+                <h1 class="page-heading">{{category.name}}</h1>
+            {{/contains}}
+        {{/contains}}
+    {{/if}}
+    {{{region name="category_below_header"}}}
+    {{/unless}}
+        <div class="category-list">
+            <div class="category-list__pic">
+                {{{region name="category_slider"}}}
+                {{> components/custom/product/slider}}
+            </div>
+            <div class="category-list__content">
+                    <section id="product-listing-container">
+                        {{assignVar 'containerCategoryPath' (join (pluck (after breadcrumbs 1) 'name') '/')}}
+                        {{#if category.products}}
+                            {{> components/category/product-listing
+                                products=category.products
+                                targetCategoryPath=(getVar 'containerCategoryPath')
+                            }}
+                        {{/if}}
+        
+                        {{#if category.subcategories}}
+                            {{#each category.subcategories}}
+                                {{assignVar 'subCategoryPath' (join (arrayify (concat (concat (getVar 'containerCategoryPath') '/') name)))}}
+                                {{#if name '===' 'Individual Products'}}
+                                    <div class="product-expand--wrapper">
+                                        <a href="" data-collapsible="{{dashcase name}}" class="category__collapse">
+                                            <div class="category-list__section">
+                                                <span class="category__title">
+                                                {{lang 'category.addIndividual'}}
+                                                {{#if description}}
+                                                    <span class="tooltip" data-category-id="{{id}}" data-tooltip-content="#tooltip-content-{{id}}">
+                                                    <span class="tooltip-wrapper">
+                                                        {{{description}}}
+                                                    </span>
+                                                    </span>
+                                                {{/if}}
+                                                </span>
+                                                <span class="product-expand">Show Options</span>
+                                            </div>
+                                            
+                                        </a>
+                                    </div>
+                                    {{> components/category/product-listing
+                                        products=../../category.products
+                                        targetCategoryPath=(getVar 'subCategoryPath')
+                                        class=(concat 'productList--sub-category productList--' (concat (dashcase name) ' category__collapse-list'))
+                                        listId=(dashcase name)
+                                    }}
+        
+                                {{else}}
+                                        {{#if name '!==' 'Optional Add-ons'}}
+                                            <div class="category-list__section">
+                                                <span class="category__title">
+                                                    {{lang 'category.hereWhatYouNeed'}}
+                                                    {{#if description}}
+                                                    <span class="tooltip" data-category-id="{{id}}" data-tooltip-content="#tooltip-content-{{id}}">
+                                                        <span class="tooltip-wrapper">
+                                                        {{{description}}}
+                                                        </span>
+                                                    </span>
+                                                    {{/if}}
+                                                </span>
+                                                <div class="buy-full">
+                                                    <button class="buy-full-btn">Buy Full Level Set</button>
+                                                </div>
+                                            </div>
+                                            {{> components/category/product-listing
+                                                products=../../../category.products
+                                                targetCategoryPath=(getVar 'subCategoryPath')
+                                                class=(concat 'productList--sub-category productList--' (dashcase name))
+                                            }}
+                                        {{/if}}
+                                {{/if}}       
+                            {{/each}}
+        
+                        {{/if}}
+                    </section>
+                <button class="btn-add-all btn-primary btn-lg">{{lang 'products.add_to_cart'}}</button>
+            </div>
+            
+
+        </div>
+        <div class="category-grid">
+            <section id="product-grid-container">
+                {{assignVar 'containerCategoryPath' (join (pluck (after breadcrumbs 1) 'name') '/')}}
+                {{#if category.subcategories}}
+                    {{#each category.subcategories}}
+                        {{assignVar 'subCategoryPath' (join (arrayify (concat (concat (getVar 'containerCategoryPath') '/') name)))}}
+                        
+                        {{#if name '===' 'Optional Add-ons'}}
+                            <div class="category-grid__section">
+                                <span class="category__title">
+                                    Optional Products
+                                </span>
+                            </div>
+                            {{> components/category/product-listing
+                                products=../../category.products
+                                targetCategoryPath=(getVar 'subCategoryPath')
+                                class=(concat 'productList--sub-category productList--' (dashcase name))
+                            }}
+                        {{/if}}
+                        
+                    {{/each}}
+                {{/if}}
+            </section>
+        </div>   
+    
+</div>
+
+{{> components/custom/product/letter-tiles-app}}
+{{/partial}}
+{{> layout/base}}

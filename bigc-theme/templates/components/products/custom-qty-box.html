@@ -1,0 +1,31 @@
+<div class="qty-form-field qty-form-field--increments">
+    
+    <div class="qty-form-increment" data-quantity-change>
+        <button class="button-qty button-dec" data-action="dec">
+            <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+            <i class="icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" viewBox="0 0 22 12" fill="none">
+                    <path d="M20.3691 1.13197L10.7485 10.7544L1.12788 1.13197" stroke="#0B3E64" stroke-width="1.91064" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+            </i>
+        </button>
+        <input class="form-input form-input--incrementTotal"
+                id="qty_{{id}}"
+                name="qty[]"
+                type="tel"
+                value="{{#if min_purchase_quantity}}{{min_purchase_quantity}}{{else}}0{{/if}}"
+                data-quantity-min="{{min_purchase_quantity}}"
+                data-quantity-max="{{max_purchase_quantity}}"
+                min="0"
+                pattern="[0-9]*"
+                aria-live="polite">
+        <button class="button-qty button-inc" data-action="inc">
+            <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+            <i class="icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="12" viewBox="0 0 23 12" fill="none">
+                    <path d="M1.91602 10.755L11.5366 1.13257L21.1573 10.755" stroke="#0B3E64" stroke-width="1.91064" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+            </i>
+        </button>
+    </div>
+</div>

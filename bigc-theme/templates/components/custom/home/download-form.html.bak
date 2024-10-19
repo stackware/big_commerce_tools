@@ -1,0 +1,29 @@
+<div class="download-form-container">
+    <div class="download-form-content">
+        <span class="download-form-content-header">Download Our 20 Best Tips For Teaching Reading & Spelling</span>
+        <span class="download-form-content-description">Lorem ipsum dolor sit amet consectetur. Amet scelerisque aliquet integer ullamcorper id etiam. Risus faucibus.</span>
+    </div>
+    <div class="download-form">
+        <div class="input-form">
+            <div class="form-firstname">
+                <div class="label">
+                    <span>First Name</span>
+                </div>
+                <div class="text-input">
+                    <input type="text" name="first-name" id="">
+                </div>
+            </div>
+            <div class="form-email">
+                <div class="label">
+                    <span>Email</span>
+                </div>
+                <div class="text-input">
+                    <input type="text" name="email" id="">
+                </div>
+            </div>
+        </div>
+        <div class="sign-up">
+            <button>Sign Up</button>
+        </div>
+    </div>
+</div>

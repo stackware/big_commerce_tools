@@ -1,0 +1,46 @@
+---
+brand:
+    products:
+        limit: {{theme_settings.products_per_page}}
+---
+{{inject "brandProductsPerPage" theme_settings.products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.brand.previous}}
+        <link rel="prev" href="{{pagination.brand.previous}}">
+    {{/if}}
+    {{#if pagination.brand.next}}
+        <link rel="next" href="{{pagination.brand.next}}">
+    {{/if}}
+{{/partial}}
+{{#partial "page"}}
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{{region name="brand_below_header--global"}}}
+{{{region name="brand_below_header"}}}
+<div class="page">    
+    {{> components/category/include-sidebar}}
+    <main class="page-content">
+        {{#if brand.image}}
+            <div class="brand-image-container page-heading-logo">
+                <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage brand.image 'brand_size'}}">
+            </div>
+        {{/if}}
+        {{{snippet 'brand'}}}
+        <div class="brand-banner brand-banner--1" id="chiara-brand-banner1"></div>
+        <div class="product-listing-container
+            {{#if theme_settings.brandpage_infiniteScroll}}infiniteScroll{{/if}}"
+            {{#if theme_settings.brandpage_infiniteScroll}}data-brand-infinite-scroll{{/if}}
+            id="product-listing-container">
+            {{#if brand.products}}
+                {{> components/brand/product-listing}}
+            {{else}}
+                <p>{{lang 'brands.no_products'}}</p>
+            {{/if}}
+        </div>
+        <div class="brand-banner brand-banner--2" id="chiara-brand-banner2"></div>
+        {{{region name="brand_below_content--global"}}}
+        {{{region name="brand_below_content"}}}
+    </main>
+</div>
+
+{{/partial}}
+{{> layout/base}}

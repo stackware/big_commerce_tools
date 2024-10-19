@@ -1,0 +1,183 @@
+.app-container {
+    display: flex;
+    padding-top: 50px;
+    flex-direction: column;
+}
+
+.kid-zone {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 150px;
+    align-items: center;
+    gap: 50px ;
+    .title {
+        display: flex;
+        justify-content: center;
+
+        span {
+            font-family: Roboto;
+            color: #0B3E64;
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 58px;
+            letter-spacing: 0.25px;
+        }
+    }
+
+    .kid-img {
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+.app-zone {
+    background-color: #FBF9F3;
+    display: flex;
+    padding-bottom: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+    gap: 100px;
+
+    .app-info {
+        padding-top: 250px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 20px;
+
+        .app-info-title {
+            display: flex;
+            justify-content: center;
+
+            span {
+                font-family: Roboto;
+                font-size: 44px;
+                line-height: 58px;
+                font-weight: 700;
+                letter-spacing: 0.25px;
+                color: #0B3E64;
+            }
+        }
+
+        .app-description {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .description {
+                font-family: Roboto;
+                font-size: 22px;
+                line-height: 30px;
+                font-weight: 500;
+                letter-spacing: 0.25px;
+                color: #0B3E64;
+            }
+
+            .app-creator {
+                font-family: Roboto;
+                font-size: 18px;
+                line-height: 30px;
+                font-weight: 500;
+                letter-spacing: 0.25px;
+                color: #0B3E64;
+            }
+        }
+
+        .app-download-button {
+            width: 250px;
+            height: 54px;
+            border-radius: 100px;
+            background-color: #0B3E64;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            button {
+                font-family: Roboto;
+                color: #FFFFFF;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                font-size: 23px;
+                font-weight: 400;
+                line-height: 33px;
+                letter-spacing: 0.28px;
+            }
+        }
+
+
+
+    }
+
+    .app-img {
+        padding-top: 50px;
+        display: flex;
+        flex: 1;
+    }
+}
+
+.bee-img {
+    position: absolute;
+    margin-left: 50px;
+    padding-top: 830px;
+}
+
+@media screen and (max-width: 768px) {
+    .app-container {
+        width: 100%;
+
+        .kid-zone {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 50px;
+
+            .title {
+                text-align: center;
+            }
+        }
+
+        .bee-img {
+            display: none;
+        }
+
+        .app-zone {
+            display: flex;
+            flex-direction: column;
+            padding-left: 10px;
+            padding-right: 10px;
+            // margin: 0;
+            gap: 25px;
+
+            .app-info {
+                padding: 0px;
+
+                .app-info-title {
+                    text-align: center;
+                }
+            }
+
+            .app-img {
+                padding-top: 25px;
+            }
+
+            .app-download-button {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: unset;
+
+                button {
+                    display: flex;
+                    width: 296px;
+                    background-color: #0B3E64;
+                    border-radius: 100px;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

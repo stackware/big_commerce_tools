@@ -1,0 +1,135 @@
+<div class="contact-page">
+    <div class ="contact-form">
+      <form data-contact-form action="https://forms.allaboutlearningpress.com/message2.php" novalidate class="js-contact-form submit form" method="post">
+        {{inject 'contactName' (lang 'forms.validate.common.name')}}
+        {{inject 'contactEmail' (lang 'forms.validate.contact.email_address')}}
+        {{inject 'contactSubject' (lang 'forms.validate.contact.subject')}}
+        {{inject 'contactQuestion' (lang 'forms.validate.contact.question')}}
+            <div class="contact-name form-field">
+                <label class="required" for="name">Name</label>
+                <input required class="form-control" type="text" id="contact_name" name="contact_name"  />
+            </div>
+            <div class="contact-email form-field">
+                <label class="required" for="email">Email</label>
+                <input class="form-control" type="email" id="contact_email" name="contact_email" required />
+            </div>
+            <div class="contact-subject form-field">
+                <label for="subject">Subject</label>
+                <select class="form-select" id="contact_subject" name="contact_subject">
+                <option disabled selected value="">Choose a Subject</option>
+                <option value="1">Question about an order I already placed</option>
+                <option value="2">Reading Question</option>
+                <option value="4">Spelling Question</option>
+                <option value="3">Other</option>
+                </select>
+            </div>
+            <div class="contact-message form-field">
+              <label for="subject">Message</label>
+              <textarea
+                required
+                class="form-control js-auto-size multiple-lines"
+                id="contact_message"
+                name="contact_message">
+              </textarea>
+            </div>
+          <div class="contact-newletter form-field">
+                <input type="checkbox" class="form-check-input" name="contact_subscribe" id="contact_subscribe" />
+                <label class="form-check-label" for="subscribe">Sign me up for the email newsletter.</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        <div class="submit__success">
+          Thank you for contacting us! You should expect an email from us within one business day. If you don't receive a response, please check your spam filter and promotions folder (Gmail users). Still no response? Call 715-477-1976 for assistance.
+        </div>
+        <div class="submit__error">
+          There was a network problem while sending your message, please try again.
+        </div>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <div class="faq">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
+            <g clip-path="url(#clip0_764_777)">
+              <path d="M26.8396 53.6795C41.5915 53.6795 53.5503 41.7207 53.5503 26.9688C53.5503 12.2168 41.5915 0.258057 26.8396 0.258057C12.0877 0.258057 0.128906 12.2168 0.128906 26.9688C0.128906 41.7207 12.0877 53.6795 26.8396 53.6795Z" fill="#0B3E64"/>
+              <path d="M29.6791 36.0015H22.5821V32.5175C22.5821 30.969 22.8402 29.8077 23.2273 29.0335C23.6144 28.3883 24.5176 27.356 25.808 26.1946L30.4534 22.0655C31.3566 21.0332 31.8728 19.8718 31.8728 18.4524C31.8728 17.033 31.3566 15.8717 30.3243 14.9684C29.292 14.0651 28.0017 13.549 26.4532 13.549C24.9048 13.549 23.4853 14.0651 22.4531 14.9684C21.4208 15.8717 20.7756 17.033 20.5175 18.4524H12.9043C13.4204 15.0974 14.8399 12.5167 17.2916 10.5811C19.8723 8.64558 22.9692 7.61328 26.7113 7.61328C30.4534 7.61328 33.4212 8.51654 35.8729 10.4521C38.1956 12.2586 39.3569 14.8394 39.3569 18.0653C39.3569 20.388 38.7117 22.3235 37.2923 23.872L35.4858 25.8075L33.8083 27.2269C32.8019 28.0673 31.8124 28.9277 30.8405 29.8077C30.0662 30.7109 29.6791 31.8723 29.6791 33.4207V36.0015ZM26.3242 48.5181C25.0338 48.5181 23.8725 48.131 22.8402 47.3567C22.4063 46.9934 22.0574 46.5394 21.818 46.0266C21.5786 45.5138 21.4545 44.9548 21.4545 44.3889C21.4545 43.823 21.5786 43.264 21.818 42.7512C22.0574 42.2384 22.4063 41.7844 22.8402 41.421C23.7434 40.5178 24.9048 40.1307 26.1951 40.1307C27.6145 40.1307 28.6468 40.5178 29.6791 41.421C30.7114 42.1953 31.0985 43.2276 31.0985 44.3889C31.0985 45.5502 30.7114 46.4535 29.6791 47.3567C28.7759 48.131 27.6145 48.5181 26.3242 48.5181Z" fill="white"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_764_777">
+                <rect width="53.5504" height="53.6795" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <div class="text">
+          <span>For the quickest answers,<br> 
+            please check our FAQ page
+          </span><br> 
+          <button>Frequently Asked Questions</button>
+        </div>
+      </div>
+
+      <div class="phone">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
+            <g clip-path="url(#clip0_764_760)">
+              <path d="M26.9056 53.8656C41.6929 53.8656 53.6803 41.8782 53.6803 27.0909C53.6803 12.3036 41.6929 0.316162 26.9056 0.316162C12.1183 0.316162 0.130859 12.3036 0.130859 27.0909C0.130859 41.8782 12.1183 53.8656 26.9056 53.8656Z" fill="#0B3E64"/>
+              <path d="M11.124 13.8977L16.9446 9.11186C17.85 8.46513 19.1435 8.59447 19.6609 9.62925L23.2826 15.7085C23.9293 16.4846 23.7999 17.6487 23.1532 18.4248L20.825 20.6237C20.4369 21.1411 20.3076 21.6585 20.4369 22.1759C21.0837 24.7628 23.7999 32.0062 32.4662 34.3344C32.8542 34.3344 33.3716 34.3344 33.6303 34.0757L34.6651 33.2997C35.4411 32.6529 36.4759 32.6529 37.252 33.1703L43.0726 37.3094C43.978 37.8268 44.1073 39.1202 43.3313 39.767L38.1574 44.9408C37.1226 45.9756 35.5705 46.3637 34.1477 45.8463C27.551 43.2593 9.05444 34.5931 10.2186 15.5792C10.2186 14.9325 10.6066 14.2857 11.124 13.8977Z" fill="white"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_764_760">
+                <rect width="53.6788" height="53.8081" fill="white" transform="translate(0 0.0576172)"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <span>Call us at 715-477-1976<br>
+          Mon-Thurs. 8am-4pm CST<br>
+          Fri 8am-noon CST
+        </span>
+      </div>
+
+      <div class="mail">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="54" height="55" viewBox="0 0 54 55" fill="none">
+            <g clip-path="url(#clip0_764_765)">
+              <path d="M26.9036 54.674C41.6909 54.674 53.6784 42.6865 53.6784 27.8992C53.6784 13.112 41.6909 1.12451 26.9036 1.12451C12.1164 1.12451 0.128906 13.112 0.128906 27.8992C0.128906 42.6865 12.1164 54.674 26.9036 54.674Z" fill="#0B3E64"/>
+              <path d="M43.8502 18.9745L43.4621 36.3069C43.3328 38.1178 42.0393 39.67 40.3578 39.67L12.6777 38.8939C11.1255 38.8939 9.83203 37.3417 9.83203 35.4015L10.3494 18.0691" fill="white"/>
+              <path d="M10.2188 17.9397L23.6708 28.1581C23.6708 28.1581 27.0338 31.0037 30.1381 28.2874L43.8488 18.9745M10.8655 38.5058L20.8252 25.9592M42.1673 40.446L32.4663 26.6059" stroke="#0B3E64" stroke-width="1.16412" stroke-miterlimit="10"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_764_765">
+                <rect width="53.6788" height="53.8081" fill="white" transform="translate(0 0.865723)"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <span>Send us a message<br>
+          using our contact form
+        </span>
+      </div>
+
+      <div class="messenger">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="54" height="55" viewBox="0 0 54 55" fill="none">
+            <g clip-path="url(#clip0_764_773)">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M29.3999 33.9083L22.4974 26.8779L9.45925 34.1639L23.7756 18.8249L30.5504 25.9831L43.7163 18.5693L29.3999 33.9083ZM26.5878 0.929443C12.0157 0.929443 0.255859 11.9224 0.255859 25.5996C0.255859 33.2691 4.09061 40.1717 9.97055 44.7734V54.1046L18.9183 49.1194C21.4748 49.8864 24.0313 50.142 26.5878 50.142C41.1598 50.142 52.9197 39.1491 52.9197 25.5996C52.9197 11.9224 41.1598 0.929443 26.5878 0.929443Z" fill="#0B3E64"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_764_773">
+                <rect width="53.6865" height="53.6865" fill="white" transform="translate(0 0.673828)"/>
+              </clipPath>
+            </defs>
+          </svg>
+                  </div>
+        <span>Chat with us on messenger</span>
+      </div>
+        <!-- <p>Get in touch with us! We are here to help!</p>
+        <h3 class="left">Have questions?</h3>
+        <div class="clearfix" style="display:flex;align-items: center;"><img aria-hidden="true" src="/content/images/blue-question.svg" alt="FAQ" width="75" style="height:75px;width:75px;" class="left"><p>For the quickest answers, please check our <a href="/faq/">Frequently Asked Questions page</a>.</p></div>
+        <h3 class="left">Can't find what you need?</h3>
+        <div class="clearfix" style="display:flex;align-items: center;"><img aria-hidden="true" src="/content/images/green-phone.svg" alt="Call" width="75" class="left"><p>Call us at 715-477-1976.<br>Mon.-Thurs. 8am-4pm CST<br>Fri. 8am-noon CST</p></div>
+        <div class="clearfix" style="display:flex;align-items: center;"><img aria-hidden="true" src="/content/images/purple-mail.svg" alt="Email" width="75" class="left"><p>Send us a message using our contact form.</p></div>
+        <a target="_blank" href="https://www.facebook.com/messages/t/208883132519848" class="clearfix" style="display:flex;align-items: center;"><img aria-hidden="true" src="/content/images/fe_messanger.svg" alt="Messenger" width="75" class="left"><p>Chat with us on Messenger</p></a> -->
+    </div>
+</div>

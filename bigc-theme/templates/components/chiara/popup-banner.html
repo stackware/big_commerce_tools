@@ -1,0 +1,8 @@
+<main>
+    {{{region name="page_builder_content--global"}}}
+    {{{region name="page_builder_content"}}}
+    <div>{{{page.content}}}</div>
+    {{#if forms.contact}}
+        {{> components/page/contact-us-form}}
+    {{/if}}
+</main>

@@ -1,0 +1,117 @@
+.previewCartItem-image img {
+    left: spacing("quarter");
+    right: spacing("quarter");
+    top: spacing("quarter");
+    bottom: spacing("quarter");
+    max-width: calc(100% - #{spacing("half")});
+    max-height: calc(100% - #{spacing("half")});
+}
+
+.cart-totals {
+    @include breakpoint("small") {
+        float: none;
+        margin: 0 auto;
+    }
+
+    @include breakpoint("medium") {
+        float: right;
+        margin-bottom: spacing("base");
+        width: grid-calc(7, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(5, $total-columns);
+    }
+}
+
+.cart-actions {
+    @include breakpoint("small") {
+        width: grid-calc(9, $total-columns);
+        max-width: 400px;
+        margin: 0 auto;
+
+
+        .button {
+            float: none;
+            display: block;
+
+            + .button {
+                margin-top: spacing("base");
+            }
+        }
+    }
+
+    @include breakpoint("medium") {
+        width: grid-calc(7, $total-columns);
+        max-width: none;
+        margin-right: 0;
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(5, $total-columns);
+    }
+}
+
+.cart-additionalCheckoutButtons {
+    margin-top: spacing("base");
+    text-align: center;
+
+    @include breakpoint("medium") {
+        width: grid-calc(7, $total-columns);
+        margin-right: 0;
+        margin-left: auto;
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(5, $total-columns);
+    }
+
+    iframe {
+        z-index: zIndex("lowest") !important;
+    }
+
+    .or-use-label {
+        display: none;
+    }
+
+    .paypal-smart-buttons {
+        margin-top: 0;
+        margin-bottom: 0;
+
+        @include breakpoint("small") {
+            min-width: 290px;
+        }
+
+        @include breakpoint("medium") {
+        }
+    }
+
+    .FloatRight {
+        width: 100%;
+        text-align: center;
+
+        div {
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            max-width: 100%;
+        }
+    }
+}
+
+.previewCartItem-brand,
+.previewCartItem-price,
+.previewCartItem-sku {
+    display: block;
+}
+
+.previewCartItem-sku {
+    color: $small-font-color;
+    display: inline-block;
+    font-size: fontSize("smallest");
+}
+
+.AmazonPayCheckout .AmazonPayContainer .AmazonPayInnerContainer > div {
+    max-width: 100%;
+}

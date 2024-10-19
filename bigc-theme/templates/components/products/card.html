@@ -1,0 +1,32 @@
+<article class="card {{#if alternate}}card--alternate{{/if}}" {{#if settings.data_tag_enabled}} data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"  {{/if}}>
+    <figure class="card-figure">
+        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+            <div class="card-img-container">
+                {{> components/common/responsive-img
+                    image=image
+                    class="card-image"
+                    fallback_size=theme_settings.productgallery_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                }}
+            </div>
+        </a>
+    </figure>
+    <div class="card-body">
+        <h4 class="card-title">
+            {{#if demo}}
+                {{ellipsis name theme_settings.ITS.card-title-length}}
+            {{else}}
+                <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{ellipsis name theme_settings.ITS.card-title-length}}</a>
+            {{/if}}
+        </h4>
+        <p>{{{summary}}}</p>
+        {{> components/products/bulk-discount-rates}}
+        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+        <div class="add-to-cart">
+            {{> components/products/custom-qty-box}}
+            <a href="" product-id={{id}} data-event-type="product-click" class="individual-add-to-cart button button--primary btn btn-primary">{{lang 'products.add_to_cart'}}</a>
+        </div>
+        {{/or}}
+    </div>
+</article>

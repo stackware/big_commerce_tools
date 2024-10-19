@@ -1,0 +1,55 @@
+{{!
+    Parameters:
+    - products
+    - columns_sm
+    - columns
+    - columns_lg
+}}
+<section class="productCarousel blaze-slider"
+    data-blaze-slider='{
+        "all": {
+            "enablePagination": true,
+            "enableAutoplay": true,
+            "autoplayInterval": 3000,
+            "transitionDuration": 300,
+            "slidesToShow": {{#if columns_sm}}{{columns_sm}}{{else}}2{{/if}},
+            "slidesToScroll": {{#if columns_sm}}{{columns_sm}}{{else}}2{{/if}},
+            "slideGap": "0px"
+        }
+        {{#if columns_sm}}
+            ,"(min-width: 551px)": {
+                "slidesToShow": {{add columns_sm 1}},
+                "slidesToScroll": {{add columns_sm 1}}
+            }
+        {{/if}}
+        ,"(min-width: 801px)": {
+            "slidesToShow": {{default columns 4}},
+            "slidesToScroll": {{default columns 4}}
+        }
+        {{#if columns_lg}}
+            ,"(min-width: 1261px)": {
+                "slidesToShow": {{columns_lg}},
+                "slidesToScroll": {{columns_lg}}
+            }
+        {{/if}}
+    }'
+    {{#if settings.data_tag_enabled}} data-list-name="{{{list}}}"{{/if}}>
+    <div class="blaze-container">
+        <div class="blaze-track-container">
+            <div class="blaze-track">
+                {{#each products}}
+                    <div class="productCarousel-slide">
+                        {{>components/products/card show_rating=../settings.show_product_rating settings=../settings theme_settings=../theme_settings customer=../customer show_wishlist=../settings.show_wishlist event="list" urls=../urls}}
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <!-- pagination container -->
+        <div class="blaze-pagination"></div>
+
+        <!-- navigation buttons -->
+        <button class="blaze-prev">previous</button>
+        <button class="blaze-next">next</button>
+    </div>
+</section>

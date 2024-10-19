@@ -1,0 +1,18 @@
+{{!
+    Parameters:
+    - products
+    - columns
+    - columns_sm
+    - columns_md
+}}
+<ul class="productGrid
+    {{#if columns}} productGrid--maxCol{{columns}}{{/if}}
+    {{#if columns_sm}} productGrid--sm-maxCol{{columns_sm}} productGrid--md-maxCol{{add (toInt columns_sm) 1}}{{/if}}
+    "
+    {{#if settings.data_tag_enabled}} data-list-name="{{list}}"{{/if}}>
+    {{#each products}}
+    <li class="product">
+        {{>components/products/card show_compare=../show_compare show_rating=../settings.show_product_rating settings=../settings theme_settings=../theme_settings customer=../customer show_wishlist=../settings.show_wishlist event="list" urls=../urls}}
+    </li>
+    {{/each}}
+</ul>

@@ -1,0 +1,17 @@
+<a href="{{urls.home}}">
+    {{#if settings.store_logo.image}}
+        {{#if theme_settings.logo_size '===' 'original'}}
+            <img class="footer-logo-image-unknown-size lazyload" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage settings.store_logo.image 'logo_size'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+        {{else}}
+            <span class="footer-logo-image-container">
+                <img
+                    class="footer-logo-image lazyload"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='{{first (split theme_settings.logo_size 'x')}}' height='{{last (split theme_settings.logo_size 'x')}}'%3E%3C/svg%3E"
+                    data-src="{{getImage settings.store_logo.image 'logo_size'}}"
+                    alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+            </span>
+        {{/if}}
+    {{else}}
+        {{settings.store_logo.title}}
+    {{/if}}
+</a>

@@ -1,0 +1,5 @@
+#consent-manager-update-banner { position: static !important; height: auto !important }
+
+@media (max-width: screenSize("medium") - 1px) {
+    #consent-manager-update-banner { padding-bottom: $header-height; margin-top: -$header-height }
+}

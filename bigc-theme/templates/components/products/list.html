@@ -1,0 +1,20 @@
+
+<ul class="productList {{#if class}}{{class}}{{/if}}" {{#if listId}}id="{{listId}}"{{/if}}>
+  {{~#each products~}}
+    {{#contains category ../targetCategoryPath}}
+      <li class="product">
+        {{>components/products/list-item
+          show_compare=../show_compare
+          show_rating=../settings.show_product_rating
+          theme_settings=../theme_settings
+          customer=../customer
+          event=../event
+          settings=../settings
+          position=(add @index 1)
+          page_type=../page_type
+        }}
+      </li>
+    {{/contains}}
+  {{/each}}
+</ul>
+  

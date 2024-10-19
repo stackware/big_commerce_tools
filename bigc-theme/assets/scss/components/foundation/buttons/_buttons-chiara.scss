@@ -1,0 +1,17 @@
+.button {
+    text-transform: uppercase;
+}
+
+.button--buyNow {
+    color: $body-bg;
+    background-color: $color-primary;
+    border-color: $color-primary;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-primary;
+        background-color: $body-bg;
+        border-color: $color-primary;
+    }
+}

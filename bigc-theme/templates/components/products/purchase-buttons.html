@@ -1,0 +1,25 @@
+<div class="form-action-group _addToCartVisibility" {{#unless product.can_purchase}}style="display:none"{{/unless}}>
+    {{#if theme_settings.add_to_cart_btn '==' 'add_to_cart'}}
+        <div class="form-action">
+            <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
+                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+        </div>
+    {{else if theme_settings.add_to_cart_btn '==' 'buy_now'}}
+        <div class="form-action form-action--buyNow">
+            <input id="form-action-buyNow" data-wait-message="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.buy_now'}}{{/if}}" class="button button--buyNow" type="submit"
+                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.buy_now'}}{{/if}}">
+        </div>
+    {{else}}
+        <div class="form-action">
+            <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit"
+                value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+        </div>
+        {{#unless product.pre_order}}
+        <div class="form-action-or">Or</div>
+        <div class="form-action form-action--buyNow">
+            <input id="form-action-buyNow" data-wait-message="{{lang 'products.buy_now'}}" class="button button--buyNow" type="submit"
+                value="{{lang 'products.buy_now'}}">
+        </div>
+        {{/unless}}
+    {{/if}}
+</div>

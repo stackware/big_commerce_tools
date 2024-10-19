@@ -1,0 +1,19 @@
+.brand-image-container {
+    margin: 0 auto;
+
+    &.page-heading-logo {
+        @media (max-width: screenSize("medium")) {
+            max-width: none;
+        }
+    }
+}
+
+.page-type-brand {
+
+}
+
+.brand-image-container {
+    position: relative;
+    max-width: get-width(stencilString('brand_size'));
+    @include lazy-loaded-padding('brand_size');
+}

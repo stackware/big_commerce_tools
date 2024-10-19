@@ -1,0 +1,11 @@
+<nav>
+    {{{region name="sidebar_top--global"}}}
+    {{{region name="sidebar_top"}}}
+
+    {{#if product_results.faceted_search_enabled}}
+        {{> components/faceted-search/index product_results}}
+    {{/if}}
+
+    {{{region name="sidebar_bottom--global"}}}
+    {{{region name="sidebar_bottom"}}}
+</nav>

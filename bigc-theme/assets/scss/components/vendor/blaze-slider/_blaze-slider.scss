@@ -1,0 +1,86 @@
+.blaze-container {
+    padding-bottom: 20px;
+}
+
+.blaze-prev,
+.blaze-next {
+    position: absolute;
+    padding: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0;
+    background-color: rgba(color("whites", "bright"), 0.5);
+    border: 1px solid transparent;
+    border-radius: $global-radius;
+
+    &:hover,
+    &:focus-visible {
+        border-color: $color-textBase;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+}
+
+.blaze-prev {
+    left: 0;
+
+    @include breakpoint("xlarge") {
+        left: -50px;
+    }
+
+    &::before {
+        background-image: $slick-arrow-prev;
+    }
+}
+
+.blaze-next {
+    right: 0;
+
+    @include breakpoint("xlarge") {
+        right: -50px;
+    }
+
+    &::before {
+        background-image: $slick-arrow-next;
+    }
+}
+
+.blaze-pagination {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    button {
+        font-size: 0;
+        padding: 5px;
+
+        &::before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: $slick-dot-color;
+            border-radius: 50%;
+        }
+
+        &.active {
+            &::before {
+                background-color: $slick-dot-color-active;
+            }
+        }
+    }
+}

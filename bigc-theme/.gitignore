@@ -1,0 +1,40 @@
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+# Useful .gitignore templates: https://github.com/github/gitignore
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.directory
+*.zip
+
+# npm
+npm-debug.log
+node_modules/
+
+# other #
+######################
+.idea/
+
+# dist folder #
+dist/
+/assets/dist/
+parsed/
+
+# Stencil files (unique for each user) #
+secrets.stencil.json
+config.stencil.json
+.stencil
+
+# More files #
+templates/main-bundle-scripts-output.html
+templates/checkout-bundle-scripts-output.html
+templates/sentry-script-tag-output.html
+stats.json
+report.html

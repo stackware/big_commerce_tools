@@ -1,0 +1,92 @@
+<section class="heroCarousel {{#if theme_settings.carousel_mobile_height_fixed}} heroCarousel--mobile{{/if}} blaze-slider"
+    data-blaze-slider='{
+        "all": {
+            "enablePagination": true,
+            "enableAutoplay": true,
+            "autoplayInterval": {{carousel.swap_frequency}},
+            "transitionDuration": 300,
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "slideGap": "0px"
+        },
+        "(min-width: 800px)": {
+            "slidesToShow": {{default columns 1}},
+            "slidesToScroll": {{default columns 1}}
+        }
+    }'>
+    <div class="blaze-container">
+        <div class="blaze-track-container">
+            <div class="blaze-track">
+                {{#each carousel.slides}}
+                <div {{#if url}} data-href="{{url}}" role="button" tabindex="0"{{/if}} class="heroCarousel-slide heroCarousel-slide--{{add @index 1}} {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}}">
+                    <div class="heroCarousel-image-wrapper"
+                        {{#if ../theme_settings.carousel-height '===' 'equal'}}
+                        {{#and ../../carousel.slides.0.image_width ../../carousel.slides.0.image_height}}
+                            data-uniform
+                            style="padding-top: {{multiply (divide ../../../carousel.slides.0.image_height ../../../carousel.slides.0.image_width) 100}}%"
+                        {{/and}}
+                        {{/if}}
+                    >
+                        {{#if @index '===' 0}}
+                            {{#if ../../theme_settings.carousel_vid1}}
+                                {{> components/carousel-video video=../../../theme_settings.carousel_vid1}}
+                            {{/if}}
+                        {{/if}}
+                        {{#if @index '===' 1}}
+                            {{#if ../../theme_settings.carousel_vid2}}
+                                {{> components/carousel-video video=../../../theme_settings.carousel_vid2}}
+                            {{/if}}
+                        {{/if}}
+                        {{#if @index '===' 2}}
+                            {{#if ../../theme_settings.carousel_vid3}}
+                                {{> components/carousel-video video=../../../theme_settings.carousel_vid3}}
+                            {{/if}}
+                        {{/if}}
+                        {{#if @index '===' 3}}
+                            {{#if ../../theme_settings.carousel_vid4}}
+                                {{> components/carousel-video video=../../../theme_settings.carousel_vid4}}
+                            {{/if}}
+                        {{/if}}
+                        {{#if @index '===' 4}}
+                            {{#if ../../theme_settings.carousel_vid5}}
+                                {{> components/carousel-video video=../../../theme_settings.carousel_vid5}}
+                            {{/if}}
+                        {{/if}}
+                        <img class="heroCarousel-image heroCarousel-image--{{add @index 1}} {{#unless @first}}lazyload{{/unless}}"
+                            {{#if @first}}
+                                src="{{image}}"
+                                srcset="{{getImageSrcset stencil_image use_default_sizes=true}}"
+                            {{else}}
+                                data-src="{{image}}"
+                                data-srcset="{{getImageSrcset stencil_image use_default_sizes=true}}"
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='{{default image_width '100'}}' height='{{default image_height '10'}}'%3E%3C/svg%3E"
+                            {{/if}}
+                            alt="{{alt_text}}" title="{{alt_text}}"
+                            {{#if image_width}}width="{{image_width}}"{{/if}} {{#if image_height}}height="{{image_height}}"{{/if}} />
+                    </div>
+                    {{#if heading}}
+                        {{> components/carousel-content show_background=true}}
+                    {{else}}
+                        {{#if text}}
+                            {{> components/carousel-content show_background=true}}
+                        {{else}}
+                            {{#if button_text}}
+                                {{> components/carousel-content show_background=false}}
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <!-- pagination container -->
+        <div class="blaze-pagination"></div>
+
+        {{#if arrows}}
+            <!-- navigation buttons -->
+            <button class="blaze-prev">previous</button>
+            <button class="blaze-next">next</button>
+        {{/if}}
+    </div>
+</section>

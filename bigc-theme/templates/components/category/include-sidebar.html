@@ -1,0 +1,21 @@
+
+{{#any category.faceted_search_enabled category.shop_by_price brand.faceted_search_enabled product_results.faceted_search_enabled}}
+    {{> components/category/include-sidebar-toggle}}
+{{else}}
+    {{#and category.shop_by_price theme_settings.shop_by_price_visibility}}
+        {{> components/category/include-sidebar-toggle}}
+    {{/and}}
+{{/any}}
+<aside class="page-sidebar mobileSidebar-panel" id="mobileSidebar-panel">
+    <h4 class="mobile-panel-heading"><span class="mobile-panel-heading-ellipse">{{lang 'search.faceted.browse-by'}}</span></h4>
+    <a class="mobile-panel-close" href="#" data-collapsible="mobileSidebar-panel" data-group-collapsible="main"><svg><use xlink:href="#icon-close" aria-hidden="true"></use></svg></a>
+    <div id="faceted-search-container" data-lock-body-scroll>
+        {{#if page_type '==' 'search'}}
+            {{> components/search/sidebar}}
+        {{else if page_type '==' 'brand'}}
+            {{> components/brand/sidebar}}
+        {{else}}
+            {{> components/category/sidebar}}
+        {{/if}}
+    </div>
+</aside>

@@ -1,0 +1,218 @@
+.feature-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #FBF9F3;
+  width: 100%;
+  justify-content: center;
+  padding-top: 100px;
+
+  .feature-key-container {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .feature-title {
+      width: 100%;
+
+      span {
+        display: flex;
+        justify-content: center;
+        font-family: Roboto;
+        color: #0B3E64;
+        font-size: 44px;
+        font-weight: 700;
+        line-height: 58px;
+        letter-spacing: 0.25px;
+      }
+    }
+
+    .feature-certificate {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .feature-key-success {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+
+    .feature-content {
+      padding-left: 150px;
+      padding-right: 150px;
+      width: 100%;
+      display: flex;
+      gap: 100px;
+
+      .feature-content-item {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        text-align: center;
+
+        .item-title {
+          font-family: Roboto;
+          color: #0B3E64;
+          font-size: 40px;
+          font-weight: 700;
+          line-height: 73px;
+          letter-spacing: 0.3;
+        }
+
+        .feature-description {
+          font-family: Roboto;
+          color: #0B3E64;
+          font-size: 22px;
+          font-weight: 500;
+          line-height: 35px;
+          letter-spacing: 0.3;
+        }
+      }
+    }
+  }
+
+  .home-guarantee-container {
+    display: flex;
+    padding-left: 150px;
+    padding-right: 150px;
+    gap: 150px;
+
+    .guarantee-content {
+      display: flex;
+      flex-direction: column;
+      flex: 4;
+      gap: 100px;
+
+      .guarantee-content-text {
+        .title {
+          font-family: Roboto;
+          color: #0B3E64;
+          font-size: 30px;
+          font-weight: 700;
+          line-height: 72px;
+          letter-spacing: 0.3px;
+        }
+
+        .description {
+          font-family: Roboto;
+          color: #0B3E64;
+          font-size: 22px;
+          font-weight: 500;
+          line-height: 34px;
+          letter-spacing: 0.3px;
+        }
+      }
+
+      .guarantee-content-button {
+        width: 50%;
+        height: 52px;
+        border-radius: 100px;
+        background-color: #0B3E64;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+
+        a {
+          color: #FFFFFF;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          font-size: 20px;
+          font-weight: 400;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .guarantee-img {
+      flex: 3;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .feature-container {
+    padding-top: 50px;
+
+    .feature-key-container {
+      gap: 25px;
+      min-width: unset;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .feature-title {
+        text-align: center;
+      }
+
+      .feature-key-success {
+        gap: 25px;
+
+        .feature-content {
+          padding: 0;
+          margin: 0;
+          gap: 25px;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+
+    .home-guarantee-container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      padding: 10px;
+      margin: 0;
+
+      .guarantee-content {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        .guarantee-content-text {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          gap: 10px;
+
+          .title {
+            line-height: 35px;
+            font-size: 25px;
+            /* font-weight: 500; */
+            text-align: center;
+          }
+        }
+
+
+
+        .guarantee-content-button {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: unset;
+
+          a {
+            display: flex;
+            width: 296px;
+            background-color: #0B3E64;
+            border-radius: 100px;
+            justify-content: center;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .guarantee-img {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<main>
+{{#if theme_settings.product_list_display_mode '===' 'grid'}}
+    {{> components/products/grid products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings columns=theme_settings.product_list_columns event="list"}}
+{{else}}
+    {{> components/products/list products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings event="list"}}
+{{/if}}
+
+{{> components/common/paginator pagination.product_results}}
+</main>

@@ -1,0 +1,17 @@
+{{#if name '===' 'new-products'}}
+    {{> components/chiara/sections/new-products}}
+{{else if name '===' 'top-products'}}
+    {{> components/chiara/sections/top-products}}
+{{else if name '===' 'featured-products'}}
+    {{> components/chiara/sections/featured-products}}
+{{else if name '===' 'recent-blog'}}
+    {{> components/chiara/sections/recent-blog}}
+{{else if name '===' 'home-banner1'}}
+    {{> components/chiara/banners/banner find="chiara-home-banner1"}}
+{{else if name '===' 'home-banner2'}}
+    {{> components/chiara/banners/banner find="chiara-home-banner2"}}
+{{else if name '===' 'home-banner3'}}
+    {{> components/chiara/banners/banner find="chiara-home-banner3"}}
+{{else if name '===' 'categories-list'}}
+    {{> components/chiara/sections/categories-list}}
+{{/if}}

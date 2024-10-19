@@ -1,0 +1,76 @@
+<nav>
+    {{{region name="sidebar_top--global"}}}
+    {{{region name="sidebar_top"}}}
+
+    <div class="sidebarBlock sidebarBlock--categories u-hiddenVisually" id="sidebar-categories-nav">
+        <h5 class="sidebarBlock-heading">{{lang 'category.label'}}</h5>
+        <ul class="navList">
+            {{#each categories}}
+                {{> components/category/nav-category-item currentCategory=../category currentId=../category.id}}
+            {{/each}}
+        </ul>
+    </div>
+
+    {{#if category.foundCurrentCategory}}
+        <script>document.getElementById('sidebar-categories-nav').classList.remove('u-hiddenVisually');</script>
+    {{else}}
+        <div class="sidebarBlock sidebarBlock--categories">
+            <h5 class="sidebarBlock-heading">{{category.name}}</h5>
+            <ul class="navList">
+                {{#each category.subcategories}}
+                    {{> components/category/nav-category-item}}
+                {{/each}}
+            </ul>
+        </div>
+    {{/if}}
+    
+
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else}}
+        {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+    {{/if}}
+
+    {{{region name="sidebar_below_filter--global"}}}
+    {{{region name="sidebar_below_filter"}}}
+
+    {{#if theme_settings.show_sidebar_category_banner1}}
+        {{#block "chiara-sidebar-category-banner1"}}
+            <div class="sidebarBlock sidebarBlock--banner" id="chiara-sidebar-category-banner1"></div>
+            <!-- <p><a href="#"><img src="https://via.placeholder.com/302x302" alt="302x302"></a></p> -->
+        {{/block}}
+    {{/if}}
+
+    {{#block (concat "chiara-sidebar-category-banner1-category-" category.id)}} {{/block}}
+
+    {{#if products.new}}
+        {{#block "chiara-sidebar-new-products"}}
+        <div class="sidebarBlock sidebarBlock--products sidebarBlock--newProducts">
+            <h5 class="sidebarBlock-heading">{{lang 'products.new' }}</h5>
+            <ul class="productGrid productGrid--maxCol1" data-product-type="new"{{#if settings.data_tag_enabled}} data-list-name="New Products"{{/if}}>
+                {{#each products.new}}
+                    <li class="product">
+                        {{>components/products/card settings=../settings theme_settings=../theme_settings customer=../customer show_wishlist=../settings.show_wishlist event="list" urls=../urls}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/block}}
+    {{/if}}
+
+    {{#if theme_settings.fb_page '!==' ''}}
+        {{> components/chiara/common/facebook}}
+    {{/if}}
+
+    {{#if theme_settings.show_sidebar_category_banner2}}
+        {{#block "chiara-sidebar-category-banner2"}}
+            <div class="sidebarBlock sidebarBlock--banner" id="chiara-sidebar-category-banner2"></div>
+            <!-- <p><a href="#"><img src="https://via.placeholder.com/302x500" alt="302x500"></a></p> -->
+        {{/block}}
+    {{/if}}
+
+    {{#block (concat "chiara-sidebar-category-banner2-category-" category.id)}} {{/block}}
+
+    {{{region name="sidebar_bottom--global"}}}
+    {{{region name="sidebar_bottom"}}}
+</nav>

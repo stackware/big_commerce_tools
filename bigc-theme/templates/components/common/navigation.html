@@ -1,0 +1,101 @@
+<nav class="navUser navUser--alt">
+    {{#unless theme_settings.topHeader_show}}
+    {{#unless theme_settings.navUser_panel}}
+        {{#if customer}}
+            <li class="navUser-item navUser-item--account">
+                <a class="navUser-action" href="{{urls.account.index}}">{{lang 'common.account'}}</a>
+            </li>
+            <li class="navUser-item navUser-item--logout">
+                <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+            </li>
+        {{else}}
+            <li class="navUser-item navUser-item--login">
+                <a class="navUser-action" href="{{urls.auth.login}}">{{lang 'common.login'}}</a>
+            </li>
+            {{#if settings.account_creation_enabled}}
+                <li class="navUser-item navUser-item--register">
+                    <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                </li>
+            {{/if}}
+        {{/if}}
+
+        {{> components/common/currency-selector}}
+    {{/unless}}
+    {{/unless}}
+</nav>
+
+<nav class="navUser">
+    <ul class="navUser-section">
+
+        {{#or (if theme_settings.bottomBar '===' '') (if theme_settings.bottomBar '===' 'hide')}}
+            <li class="navUser-item navUser-item--menuToggle">
+                <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu" aria-controls="menu" aria-expanded="false">
+                    <span class="mobileMenu-toggleIcon">Toggle menu</span>
+                </a>
+            </li>
+        {{/or}}
+
+        {{#unless theme_settings.navUser_panel}}
+            {{#if settings.gift_certificates_enabled}}
+                <li class="navUser-item navUser-item--giftCert">
+                    <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">
+                        <i class="navUser-item-icon"><svg><use xlink:href="#icon-gift" /></svg></i>
+                        <span class="navUser-item-giftCertLabel">{{lang 'common.gift_cert'}}</span>
+                    </a>
+                </li>
+            {{/if}}
+
+            {{#if customer.store_credit.value '>' 0}}
+                <li class="navUser-item navUser-item--storeCredit">
+                    <a class="navUser-action navUser-action--storeCredit"
+                    data-dropdown="storeCredit-dropdown"
+                    data-options="align:bottom"
+                    href="{{urls.cart}}">
+                            <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                    </a>
+                    <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                        {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                    </div>
+                </li>
+            {{/if}}
+        {{/unless}}
+
+        <li class="navUser-item navUser-item--search">
+            <a class="navUser-action navUser-action--quickSearch" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                <i class="navUser-item-icon"><svg><use xlink:href="#icon-search" /></svg></i>
+                <span class="navUser-item-searchLabel">{{lang 'common.search'}}</span>
+            </a>
+        </li>
+
+        <li class="navUser-item navUser-item--compare">
+            <a class="navUser-action navUser-action--compare" href="{{urls.compare}}" data-compare-nav>
+                <i class="navUser-item-icon"><svg><use xlink:href="#icon-compare" /></svg></i>
+                <span class="navUser-item-compareLabel">{{lang 'common.compare'}}</span>
+                <span class="countPill countPill--positive"></span></a>
+        </li>
+
+        {{#if theme_settings.navUser_panel}}
+            <li class="navUser-item navUser-item--more">
+                <a class="navUser-action navUser-action--more" href="#" id="navUser-more-toggle" data-collapsible="navUser-more-panel" data-group-collapsible="main">
+                    <i class="navUser-item-icon"><svg><use xlink:href="#icon-account" /></svg></i>
+                    <span class="navUser-item-moreLabel">{{lang 'common.more'}}</span>
+                </a>
+            </li>
+        {{/if}}
+
+        <li class="navUser-item navUser-item--cart">
+            <a
+                class="navUser-action"
+                data-cart-preview
+                data-dropdown="cart-preview-dropdown"
+                data-options="align:right"
+                href="{{urls.cart}}">
+                <i class="navUser-item-icon"><svg><use xlink:href="#icon-cart" /></svg></i>
+                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
+                <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+            </a>
+
+            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,16 @@
+<ul aria-hidden="true" class="dropdown-menu wishlist-dropdown is-open f-open-dropdown">
+    {{#if customer.wishlists}}
+        {{#each customer.wishlists}}
+            <li>
+                <a data-card-wishlist-add class="button" href="{{add_url}}&product_id={{../product.id}}">{{name}}</a>
+            </li>
+        {{/each}}
+    {{else}}
+        <li>
+            <a class="button" href="{{product.add_to_wishlist_url}}">{{lang 'account.wishlists.add_to_default'}}</a>
+        </li>
+    {{/if}}
+    <li>
+        <a data-wishlist class="button" href="/wishlist.php?action=addwishlist&product_id={{product.id}}">{{lang 'account.wishlists.create_new'}}</a>
+    </li>
+</ul>

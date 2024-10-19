@@ -1,0 +1,515 @@
+.navPages-container {
+    padding-bottom: $header-height;
+
+    @include breakpoint("medium") {
+        z-index: zIndex("high"); // equal .navUser
+        overflow: hidden;
+
+        // Fix for iPad iOS 13+
+        &.initialized {
+            overflow: visible;
+
+            .navPages {
+                overflow: visible;
+            }
+        }
+    }
+
+    &.is-open {
+        padding-top: 0;
+        z-index: zIndex("low") + 5; // higher than logo and navUser icons
+    }
+}
+
+.navPages-container-heading {
+    @extend %mobile-panel-heading;
+}
+
+.navPages-container-heading-ellipse {
+    @extend %mobile-panel-heading-ellipse;
+}
+
+.navPages-list {
+    @include breakpoint("medium") {
+        display: flex;
+    }
+}
+
+.navPages-list--user {
+    @include breakpoint("medium") {
+        display: none;
+    }
+}
+
+.navPages-item {
+    @include breakpoint("medium") {
+        flex-shrink: 0;
+    }
+}
+
+.navPages-action {
+    font-size: $navPages-fontSize;
+    font-weight: stencilString("navPages-fontWeight");
+    letter-spacing: -.01em;
+
+    @media (max-width: screenSize("medium") - 1px) {
+        &.has-subMenu {
+            position: relative;
+        }
+    }
+
+    @include breakpoint("medium") {
+        padding-top: spacing("half");
+        padding-bottom: spacing("half");
+    }
+
+    .navPages-list>.navPages-item>& {
+        @include breakpoint("medium") {
+            position: relative;
+            padding-top: spacing("half") + spacing("single");
+            padding-bottom: spacing("half") + spacing("single");
+            white-space: nowrap;
+
+            &:after {
+                content: ' ';
+                position: absolute;
+                border-bottom: 2px solid stencilColor("navPages-color-hover");
+                bottom: spacing("half") + spacing("single");
+                left: 50%;
+                right: 50%;
+                transition: all .15s ease-in-out;
+            }
+
+            .is-sticky & {
+                padding-top: spacing("half");
+                padding-bottom: spacing("half");
+                transition: padding .5s ease;
+
+                &:after {
+                    bottom: spacing("half");
+                }
+            }
+
+            .header-main-container--top & {
+                padding-top: spacing("half");
+                padding-bottom: spacing("half");
+
+                &:after {
+                    bottom: spacing("half");
+                }
+            }
+        }
+    }
+
+    .navPages-list>.navPages-item:hover>& {
+        @include breakpoint("medium") {
+            &:after {
+                left: spacing("half") + spacing("quarter");
+                right: spacing("half") + spacing("quarter");
+            }
+        }
+    }
+}
+
+.navPages-action-moreIcon {
+    margin-top: -4px;
+
+    @media (max-width: screenSize("medium") - 1px) {
+        position: absolute;
+        right: 0;
+        top: 50%;
+    }
+}
+
+.navPage-subMenu {
+    @include breakpoint("medium") {
+        box-shadow: 0 15px 30px rgba($color-black, .05);
+        z-index: zIndex("high") + 5; // higher than navUser
+        // padding-top: 0 !important;
+    }
+}
+
+// Fix mega menu lag on Sarafi
+@include safari-only() {
+    .navPage-subMenu {
+        box-shadow: none;
+    }
+}
+
+.navPage-subMenu-action {
+    font-size: $navPages-subMenu-fontSize;
+    font-weight: initial;
+
+    @include breakpoint("medium") {
+        padding-top: spacing("half");
+        padding-bottom: spacing("half");
+
+        .navPage-subMenu-item>& {
+            margin-bottom: spacing("quarter");
+        }
+    }
+}
+
+.navPage-childList-action {
+    font-size: $navPages-childList-fontSize;
+    font-weight: initial;
+
+    @include breakpoint("medium") {
+        padding-top: spacing("eighth");
+        padding-bottom: spacing("eighth");
+    }
+}
+
+.navPages {
+    @include breakpoint("medium") {
+        overflow: hidden;
+    }
+
+    .navPage-subMenu-list {
+        margin-right: 0;
+
+        @include breakpoint("medium") {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: none;
+
+            &:before,
+            &:after {
+                display: none;
+            }
+        }
+    }
+}
+
+.navPage-subMenu-horizontal.is-open {
+    border-left: 0;
+}
+
+// Alternate Drop-down Menu
+// ----------------------------------------------------------------------------
+
+.navPage-subMenu-item-child,
+.navPage-subMenu-item-parent {
+    @include breakpoint("medium") {
+        position: relative;
+
+        .navPage-subMenu-action.is-open,
+        .navPage-subMenu-action:hover {
+            font-weight: stencilFontWeight("headings-font");
+            opacity: initial;
+            background: $navPage-subMenu-item--is-highlighted-background;
+        }
+    }
+}
+
+.navPage-subMenu-action.navPages-action-depth-max.has-subMenu,
+.navPages-item-page .navPage-subMenu-action.has-subMenu {
+    @include breakpoint("medium") {
+        position: relative;
+
+        .navPages-action-moreIcon {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            right: spacing("base");
+            transform: translateY(-50%) rotate(-90deg);
+            ;
+        }
+    }
+}
+
+// The dropdown menu display more items
+// ----------------------------------------------------------------------------
+
+.navPages-list--dropdown {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    right: 9999px;
+    top: 100% !important;
+    background-color: stencilColor("navPages-subMenu-backgroundColor");
+    min-width: remCalc(250px);
+    box-shadow: 0 15px 30px rgba($color-black, .05);
+    transition: opacity .2s ease-in-out, left 0s ease .2s, right 0s ease .2s;
+
+    opacity: 0;
+
+    .navPages-list+& {
+        margin: 0;
+        padding: 0;
+        // border: 0;
+    }
+
+    @include breakpoint("medium") {
+        &.is-open {
+            opacity: 1;
+            left: 0 !important;
+            right: 0;
+            transition: opacity .2s ease-in-out;
+        }
+    }
+
+    .navPages-item {}
+
+    >.navPages-item>.navPages-action {
+        padding-top: spacing("half");
+        padding-bottom: spacing("half");
+
+        &:after {
+            bottom: spacing("half");
+        }
+    }
+}
+
+// Menu on Mobile & Tablet
+// ----------------------------------------------------------------------------
+@media (max-width: screenSize("medium") - 1px) {
+    .navPages {
+        overflow-y: visible;
+        background-color: transparent;
+        text-align: center;
+    }
+
+    .navPages-container {
+        display: block;
+        @include mobile-panel;
+        background-color: $header-bg;
+
+        .navPages {
+            @include mobile-panel-body;
+        }
+
+        @if stencilString("bottomBar")=="" or stencilString("bottomBar")=="hide" {
+            .mobile-panel-close {
+                left: 0;
+                right: auto;
+                width: $header-height;
+                height: $header-height;
+                padding: 14px;
+            }
+        }
+    }
+
+    .navPages-list-depth-max.subMenu-is-open {
+
+        .is-hidden,
+        .navPages-item-page {
+            display: block;
+
+            &.navPages-action,
+            &.navPage-subMenu-action {
+                display: inline-block;
+            }
+        }
+    }
+
+    .navPages-item--category {
+        @if stencilString("bottomBar")=="" or stencilString("bottomBar")=="hide" {}
+
+        @else {
+            display: none;
+        }
+    }
+
+    .navPages-action {
+        display: inline-block;
+        padding: spacing("half") spacing("single");
+
+        &.is-open {
+            position: relative;
+
+            &:before {
+                content: '';
+                position: absolute;
+                bottom: spacing("quarter");
+                left: spacing("single");
+                right: spacing("single");
+                border-top: 2px solid stencilColor("navPages-color");
+            }
+        }
+    }
+
+    .navPages-action-depth-max.has-subMenu.is-open {
+        border: none;
+    }
+
+    .navPages-action-moreIcon {
+        font-style: normal;
+        right: spacing("quarter");
+        opacity: .3;
+        transform: none;
+        font-size: 0;
+        width: auto;
+        height: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+
+        .has-subMenu.is-open & {
+            transform: translateY(-50%);
+
+            &:before {
+                content: '-';
+            }
+        }
+
+        &:before {
+            font-weight: bold;
+            content: "+";
+            font-size: $navPages-fontSize;
+        }
+
+        svg {
+            display: none;
+        }
+
+        .navPages-action-depth-max.has-subMenu.is-open & {
+            top: 50%;
+            right: spacing("quarter");
+            width: auto;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            transform: translateY(-50%);
+        }
+    }
+
+    .navPage-subMenu-list {
+        .navPages & {
+            margin: spacing("single") 0;
+        }
+    }
+
+    .navPage-childList {
+        margin: spacing("single") 0;
+        padding: 0;
+        border: 0;
+    }
+}
+
+
+// Categories menu in Catalog Panel
+// ----------------------------------------------------------------------------
+.navPages--catalogPanel {
+    position: static;
+    padding: 0;
+    margin: auto;
+}
+
+
+// Widgets in Menu
+// -----------------------------------------------------------------------------
+
+.navigation-widgets {
+    @include breakpoint("medium") {
+        .navPage-subMenu {
+            [data-content-region] {
+                max-width: 25%;
+                display: flex;
+                align-items: center;
+            }
+
+            .navPage-subMenu-list {
+                margin-top: 0;
+            }
+        }
+        // TMA custom text style start
+        .navPage-subMenu-action {
+            color: #0B3E64;
+            font-family: Roboto;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: 0.214px;
+        }
+
+        .navPage-childList-action {
+            color: #0B3E64;
+            font-family: Roboto;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 29px;
+            /* 193.333% */
+            letter-spacing: 0.214px;
+        }
+        // TMA custom text style End
+
+        .navPage-subMenu-list {
+            [data-content-region] {
+                max-width: 100%;
+            }
+
+            .navPage-subMenu-list {
+                margin-top: 0;
+            }
+        }
+
+        &.navigation-hover {
+
+            .navPages-item:hover,
+            .navPages-item:focus {
+                .navPage-subMenu.is-open {
+                    display: flex;
+                    width: 100%;
+                }
+            }
+
+            // &.page-builder-edit-mode {
+            //     .navPage-subMenu.is-open {
+            //         display: flex;
+            //     }
+            // }
+        }
+
+        &:not(.navigation-hover) {
+            .navPage-subMenu.is-open {
+                display: flex;
+            }
+        }
+
+        &.editing-menu-widgets {
+            .header.is-sticky {
+                position: static;
+
+                +.chiara-stickymenu-placeholder {
+                    display: none;
+                }
+            }
+
+            .header-main-container {
+                display: block;
+            }
+
+            .navPages-list {
+                display: block;
+            }
+
+            .navPages-item {
+                float: none;
+
+                >.navPages-action {
+                    padding-top: spacing("half") !important;
+                    padding-bottom: spacing("half") !important;
+                }
+            }
+
+            .navPage-subMenu {
+                display: flex !important;
+                position: static !important;
+                margin-bottom: spacing("single");
+            }
+        }
+    }
+
+    @media (max-width: screenSize("medium") - 1px) {
+        .navPage-subMenu {
+            [data-content-region] {
+                display: none;
+            }
+        }
+    }
+}

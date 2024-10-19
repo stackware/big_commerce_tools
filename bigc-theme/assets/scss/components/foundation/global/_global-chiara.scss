@@ -1,0 +1,10 @@
+@if $exportCSS--global { // 1
+    body {
+        @if stencilString("bottomBar") == "top" {
+            padding-top: $header-height * 2;
+        }
+        @include breakpoint("medium") {
+            padding-top: 0;
+        }
+    }
+}

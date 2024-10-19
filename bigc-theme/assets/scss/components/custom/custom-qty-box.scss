@@ -1,0 +1,36 @@
+.qty-form-field {
+    display: flex;
+    justify-content: center;
+
+    .qty-form-increment {
+        border: 1.911px solid #D9D9D9;
+        border-radius: 87.415px;
+        height: 53.117px;
+        flex-shrink: 0;
+
+        .button-dec {
+            width: 55.8px;
+            height: 52.923px;
+            border-radius: 87.415px 0px 0px 87.415px;
+            border: 1.911px solid #D9D9D9;
+        }
+
+        .button-inc {
+            width: 55.8px;
+            height: 52.923px;
+            border-radius: 0px 87.415px 87.415px 0px;
+            border: 1.911px solid #D9D9D9;
+        }
+
+        .button-qty:hover {
+            background-color: #0B3E64;
+            .icon svg path{
+                stroke: white !important;
+            }
+        }
+
+        .icon svg {
+            fill: none !important;
+        }
+    }
+}

@@ -1,0 +1,432 @@
+.header {
+    @if stencilString("bottomBar") == "top" {
+        z-index: zIndex("low") + 1;
+    } @else {
+        z-index: zIndex("low");
+        box-shadow: 0 0 15px rgba($color-black, .1);
+    }
+
+    @include breakpoint("medium") {
+        box-shadow: none;
+    }
+
+    &.is-open {
+        .header-main {
+            border-bottom: container("border");
+        }
+    }
+
+    &.is-sticky {
+        @include u-is-sticky;
+    }
+}
+.header-main {
+    border-bottom: 1px solid rgba(11, 62, 100, 0.30);
+    background: #FDFDFB;
+}
+
+// fix mega menu not show on Safari when header sticky
+@include safari-only() {
+    .header.is-sticky {
+        box-shadow: 0 100vh 0 transparent;
+    }
+}
+
+.header-logo {
+    @if stencilString("bottomBar") == "" or stencilString("bottomBar") == "hide" {
+        margin: 0 remCalc($header-toggle-width) + spacing("double");
+    }
+    a {
+        @media(max-width: screenSize("medium") - 1px) {
+            width: 100%;
+            min-height: $header-height;
+            display: flex;
+            align-items: center;
+            
+        }
+    }
+}
+
+.header-logo-text {
+    @media(max-width: screenSize("medium") - 1px) {
+        letter-spacing: 0;
+    }
+}
+
+.navPages-container {
+    @include breakpoint("medium") {
+        position: static;
+    }
+}
+
+.header-main-container {
+    @extend %chiara-container;
+    position: static;
+
+    //TMA custom nav menu start
+    max-width: 100%;
+    padding: 0 5rem;
+    //TMA custom nav menu end
+
+    @include breakpoint("medium") {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        width: layout("fixed");
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .header-logo {
+            margin: 0;
+        }
+
+        .navPages-container {
+            order: 2;
+            margin: 0 auto;
+            padding: 0 spacing("single");
+        }
+        
+        .navUser {
+            order: 3;
+            margin: 0;
+            width: auto;
+        }
+    }
+    .header-body {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        z-index: 100;
+    }
+}
+
+.header-main-container--left {
+    .header-logo {
+        @if stencilString("bottomBar") == "" or stencilString("bottomBar") == "hide" {
+            margin-right: remCalc($header-toggle-width);
+        }
+        @include breakpoint("medium") {
+            @if stencilString("bottomBar") == "" or stencilString("bottomBar") == "hide" {
+                margin-right: 0;
+            }
+            order: 1;
+        }
+    }
+}
+
+.header-main-container--right {
+    .header-logo {
+        @if stencilString("bottomBar") == "" or stencilString("bottomBar") == "hide" {
+            margin-right: remCalc($header-toggle-width);
+        }
+        @include breakpoint("medium") {
+            @if stencilString("bottomBar") == "" or stencilString("bottomBar") == "hide" {
+                margin-right: 0;
+            }
+            order: 4;
+        }
+    }
+
+    .navPages-container {
+        @include breakpoint("medium") {
+            order: 3;
+        }
+    }
+
+    .navUser {
+        @include breakpoint("medium") {
+            order: 1;
+        }
+    }
+
+    .navUser--alt {
+        @include breakpoint("medium") {
+            order: 2;
+        }
+    }
+}
+
+.header-main-container--center {
+    $logo-width: if(stencilString("logo_size") == "original", 400, get-width(stencilString("logo_size")));
+
+    .header-logo {
+        @include breakpoint("medium") {
+            order: 2;
+            width: $logo-width;
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+
+    .navPages-container {
+        @include breakpoint("medium") {
+            order: 1;
+            width: calc(50% - #{$logo-width / 2});
+            padding: 0;
+            margin-left: -(spacing("half") + spacing("quarter"));
+            margin-right: (spacing("half") + spacing("quarter"));
+        }
+    }
+
+    .navPages {
+        @include breakpoint("medium") {
+            text-align: left;
+        }
+    }
+
+    .navUser {
+        @include breakpoint("medium") {
+            order: 3;
+            width: auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    .navUser--alt {
+        @include breakpoint("medium") {
+            margin-left: auto;
+        }
+    }
+
+    .navUser-section {
+        float: right;
+    }
+}
+
+.header-main-container--top {
+    @include breakpoint("medium") {
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        .header-logo {
+            order: 2;
+            margin: 0;
+            width: calc(100% - 600px);
+            text-align: center;
+            padding: spacing("half") 0;
+            .is-sticky & {
+                padding: 0;
+            }
+        }
+        .header-logo-image-container {
+            display: inline-block;
+        }
+        .navPages-container {
+            width: 100%;
+            order: 4;
+        }
+        .navUser {
+            order: 3;
+            width: 300px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .navUser--alt {
+            order: 1;
+            justify-content: flex-start;
+        }
+        .navPages-list--main {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+        }
+    }
+}
+
+.header-logo-image-container {
+    width: get-width(stencilString("logo_size"));
+    max-width: 100%;
+    margin: auto;
+
+    &:after {
+        transition: all 0.3s linear;
+    }
+
+    @include breakpoint("medium") {
+        max-width: none;
+
+        .is-sticky & {
+            margin: spacing("eighth") 0;
+            &:after {
+                padding-bottom: (remCalc($header-height) - $header-logo-marginVertical * 2);
+            }
+        }
+    }
+}
+
+.header-logo-image {
+    height: 100%;
+    transition: all .5s ease;
+    object-fit: contain;
+
+    .header-logo--left & {
+        transform-origin: left center;
+    }
+
+    .header-logo--right & {
+        transform-origin: right center;
+    }
+}
+
+
+// Top Header
+// ----------------------------------------------------------------------------
+
+.header-top {
+    display: none;
+    border-bottom: 1px solid rgba(stencilColor("navUser-color"), .1);
+    padding: spacing("third") 0;
+    color: stencilColor("navUser-color");
+
+    .is-sticky & {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+}
+
+.header-top-container {
+    @include container;
+}
+
+.header-top-list {
+    list-style: none;
+    margin: 0;
+    display: flex;
+}
+
+.header-top-item {
+    margin: auto 0;
+    order: 15;
+    border-left: 1px solid rgba(stencilColor("navUser-color"), .1);
+    text-align: center;
+
+    &:first-child {
+        border-left: 0;
+        margin-left: auto;
+    }
+
+    .dropdown-menu {
+        top: calc(100% + #{spacing("quarter")}) !important;
+        z-index: zIndex("high") + 10; // higher than .navPages-container
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.header-top-item--phone {
+    order: 1;
+    margin-left: 0 !important;
+
+    + .header-top-item {
+        margin-left: auto;
+    }
+}
+
+.header-top-item--address {
+    order: 5;
+    margin-left: 0 !important;
+
+    + .header-top-item {
+        margin-left: auto;
+    }
+}
+
+
+.header-top-item--banner {
+    margin: auto;
+    order: 10;
+    padding: 0 spacing("half");
+    border-left: 0;
+
+    .banner:last-child p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.header-top-action {
+    color: stencilColor("navUser-color");
+    text-decoration: none;
+    padding: spacing("quarter") spacing("half");
+    display: inline-block;
+    line-height: 1.15;
+
+    &:hover {
+        color: stencilColor("navUser-color-hover");
+
+        .icon svg {
+            fill: stencilColor("navUser-color-hover");
+        }
+    }
+
+    .icon {
+        @include square(8px);
+        margin-left: spacing("quarter");
+        margin-top: -2px;
+
+        svg {
+            fill: stencilColor("navUser-color");
+        }
+    }
+}
+
+
+
+// Pages that support displaying page heading on the header on mobile
+// ============================================================================
+
+.page-type-category,
+.page-type-brands,
+.page-type-brand,
+.page-type-page_contact_form,
+.page-type-blog,
+.page-type-giftcertificates,
+.page-type-giftcertificates_redeem,
+.page-type-giftcertificates_balance,
+.page-type-createaccount,
+.page-type-accountcreated,
+.page-type-forgotpassword,
+.page-type-newpassword,
+.page-type-login,
+.page-type-account_orderstatus,
+.page-type-account_order,
+.page-type-account_returns,
+.page-type-account_inbox,
+.page-type-account_addressbook,
+.page-type-wishlists,
+.page-type-account_recentitems,
+.page-type-editaccount,
+.page-type-cart {
+    @include body-page-heading-mobile;
+}
+
+
+//
+// Mobile Menu Toggle
+// -----------------------------------------------------------------------------
+
+.mobileMenu-toggle {
+    .mobileMenu-toggleIcon,
+    .mobileMenu-toggleIcon::before,
+    .mobileMenu-toggleIcon::after {
+        background: stencilColor("navUser-color");
+    }
+
+    &.is-open .mobileMenu-toggleIcon {
+        background-color: transparent;
+
+        &::before,
+        &::after {
+            background-color: stencilColor("navUser-color-hover");
+        }
+    }
+}

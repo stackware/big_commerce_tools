@@ -1,0 +1,25 @@
+{{#if children}}
+    <a class="navPages-action{{#if is_root}} is-root{{else}} navPage-subMenu-action{{/if}}{{#unless noDepthMaxClass}} navPages-action-depth-max{{/unless}} has-subMenu" href="{{url}}" data-collapsible="navPages-page-{{dashcase name}}{{idSuffix}}"
+        {{#if theme_settings.navigation_hover}}
+            data-collapsible-disabled-breakpoint="large"
+            data-collapsible-disabled-state="open"
+            data-collapsible-enabled-state="closed"
+        {{/if}}
+    >
+        {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+    </a>
+    <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-page-{{dashcase name}}{{idSuffix}}" aria-hidden="true" tabindex="-1">
+        <ul class="navPage-subMenu-list">
+            <li class="navPage-subMenu-item-parent">
+                <a class="navPage-subMenu-action navPages-action{{#unless noDepthMaxClass}} navPages-action-depth-max{{/unless}}" href="{{url}}">{{name}}</a>
+            </li>
+            {{#each children}}
+                <li class="navPage-subMenu-item-child">
+                    {{> components/common/navigation-page-list theme_settings=../theme_settings idSuffix=../idSuffix noDepthMaxClass=../noDepthMaxClass}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+{{else}}
+    <a class="navPages-action{{#if is_root}} is-root{{else}} navPage-subMenu-action{{/if}}" href="{{url}}">{{name}}</a>
+{{/if}}
