@@ -1,5 +1,5 @@
-# Big Commerce Professional Services
-### Including Shopify, SquareSpace and Adobe/Magento
+# Big Commerce Professional Services Toolkit
+### Including Shopify, SquareSpace and Adobe/Magento Coming Soon
 
 Stackware specializes in custom application development across stacks in the enterprise, academic and SMB ecosystems.  Over the last several months, we've been seeing an uptick in demand to support select commercial e-commerce platforms.
 
